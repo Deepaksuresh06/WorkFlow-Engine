@@ -1,0 +1,30 @@
+2026-03-17 23:53:45 [INFO]: MongoDB connected: localhost
+2026-03-17 23:53:45 [INFO]: Server running on http://localhost:5000
+2026-03-17 23:53:45 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 00:01:24 [INFO]: [Queue] Enqueued execution: 69b99dfc199f2ff479928419
+2026-03-18 00:01:25 [INFO]: [Engine] Starting execution 69b99dfc199f2ff479928419 for workflow: First workflow
+2026-03-18 00:01:25 [INFO]:   Running step [task]: start process
+2026-03-18 00:01:25 [INFO]:   Step "start process" completed in 472ms
+2026-03-18 00:01:25 [INFO]:   Running step [task]: process data
+2026-03-18 00:01:26 [INFO]:   Step "process data" completed in 672ms
+2026-03-18 00:01:26 [INFO]:   Running step [task]: finish
+2026-03-18 00:01:26 [INFO]:   Step "finish" completed in 573ms
+2026-03-18 00:01:26 [INFO]: [Engine] Execution 69b99dfc199f2ff479928419 COMPLETED in 0ms
+2026-03-18 00:04:48 [INFO]: [Queue] Enqueued execution: 69b99ec8199f2ff47992845f
+2026-03-18 00:04:48 [INFO]: [Engine] Starting execution 69b99ec8199f2ff47992845f for workflow: Order Approval
+2026-03-18 00:04:48 [INFO]:   Running step [task]: Validate Order
+2026-03-18 00:04:49 [INFO]:   Step "Validate Order" completed in 595ms
+2026-03-18 00:04:49 [INFO]:   Running step [task]: Check Inventory
+2026-03-18 00:04:49 [INFO]:   Step "Check Inventory" completed in 421ms
+2026-03-18 00:04:49 [INFO]:   Running step [notification]: Send Confirmation
+2026-03-18 00:04:50 [INFO]:   Step "Send Confirmation" completed in 663ms
+2026-03-18 00:04:50 [INFO]:   Running step [task]: Update Database
+2026-03-18 00:04:51 [INFO]:   Step "Update Database" completed in 650ms
+2026-03-18 00:04:51 [INFO]: [Engine] Execution 69b99ec8199f2ff47992845f COMPLETED in 0ms
+2026-03-18 00:11:45 [INFO]: MongoDB connected: localhost
+2026-03-18 00:11:45 [INFO]: Server running on http://localhost:5000
+2026-03-18 00:11:45 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 00:12:01 [INFO]: MongoDB connected: localhost
+2026-03-18 00:12:01 [INFO]: Server running on http://localhost:5000
+2026-03-18 00:12:01 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 00:12:06 [INFO]: Shutting down...
