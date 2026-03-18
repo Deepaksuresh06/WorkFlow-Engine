@@ -12,6 +12,10 @@ Every run is tracked in full. You can watch steps complete in real time, see exa
 
 ---
 
+## 🎥 Demo
+
+Check the demo video in the Releases section.
+
 ## Why I built it this way
 
 Most tutorials show you how to use Bull queues and Redis for job processing. I wanted to understand what problem they actually solve first — so I built the queue layer as a simple in-memory async runner using `setImmediate`. It works the same way conceptually, just without the Redis dependency for now.

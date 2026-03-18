@@ -127,3 +127,67 @@
 2026-03-18 10:42:58 [INFO]:   ✓ Step " Send Confirmation" completed in 333ms
 2026-03-18 10:42:58 [INFO]: [Engine] ✓ Execution 69ba3459e5fb3500cee00b41 COMPLETED in 0ms
 2026-03-18 10:59:29 [INFO]: Shutting down...
+2026-03-18 11:57:18 [INFO]: MongoDB connected: localhost
+2026-03-18 11:57:18 [INFO]: Server running on http://localhost:5000
+2026-03-18 11:57:18 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 12:10:05 [INFO]: [Queue] Enqueued execution: 69ba48c599c8601cf99fd375
+2026-03-18 12:10:05 [INFO]: [Engine] Starting execution 69ba48c599c8601cf99fd375 — "customer.tier" (6 steps)
+2026-03-18 12:10:05 [INFO]:   Checking rule "Block Duplicate Orders": no match
+2026-03-18 12:10:05 [INFO]:   Running step [task]: Validate Order
+2026-03-18 12:10:06 [INFO]:   ✓ Step "Validate Order" completed in 383ms
+2026-03-18 12:10:06 [INFO]:   Running step [task]: Check Inventory
+2026-03-18 12:10:06 [INFO]:   ✓ Step "Check Inventory" completed in 411ms
+2026-03-18 12:10:06 [INFO]:   Checking rule "Skip Discount For Low Value": no match
+2026-03-18 12:10:06 [INFO]:   Running step [task]: Apply Discount 
+2026-03-18 12:10:07 [INFO]:   ✓ Step "Apply Discount " completed in 428ms
+2026-03-18 12:10:07 [INFO]:   Checking rule "Flag Premium Customer": no match
+2026-03-18 12:10:07 [INFO]:   Running step [notification]: Notify Account Manager
+2026-03-18 12:10:07 [INFO]:   ✓ Step "Notify Account Manager" completed in 571ms
+2026-03-18 12:10:07 [INFO]:   Running step [task]: Process Payment
+2026-03-18 12:10:08 [INFO]:   ✓ Step "Process Payment" completed in 415ms
+2026-03-18 12:10:08 [INFO]:   Running step [notification]: Send Confirmation Email
+2026-03-18 12:10:08 [INFO]:   ✓ Step "Send Confirmation Email" completed in 535ms
+2026-03-18 12:10:08 [INFO]: [Engine] ✓ Execution 69ba48c599c8601cf99fd375 COMPLETED in 0ms
+2026-03-18 12:10:44 [INFO]: [Queue] Enqueued execution: 69ba48ec99c8601cf99fd3b5
+2026-03-18 12:10:44 [INFO]: [Engine] Starting execution 69ba48ec99c8601cf99fd3b5 — "customer.tier" (6 steps)
+2026-03-18 12:10:44 [INFO]:   Checking rule "Block Duplicate Orders": no match
+2026-03-18 12:10:44 [INFO]:   Running step [task]: Validate Order
+2026-03-18 12:10:45 [INFO]:   ✓ Step "Validate Order" completed in 588ms
+2026-03-18 12:10:45 [INFO]:   Running step [task]: Check Inventory
+2026-03-18 12:10:45 [INFO]:   ✓ Step "Check Inventory" completed in 459ms
+2026-03-18 12:10:45 [INFO]:   Checking rule "Skip Discount For Low Value": MATCHED
+2026-03-18 12:10:45 [INFO]:   Rules [AND] passed → action: skip_step
+2026-03-18 12:10:45 [INFO]:   Skipping step "Apply Discount " — rule: Skip Discount For Low Value
+2026-03-18 12:10:45 [INFO]:   Checking rule "Flag Premium Customer": MATCHED
+2026-03-18 12:10:45 [INFO]:   Rules [AND] passed → action: notify
+2026-03-18 12:10:45 [INFO]:   Rule "Flag Premium Customer" triggered notify action for step "Notify Account Manager"
+2026-03-18 12:10:45 [INFO]:   Running step [notification]: Notify Account Manager
+2026-03-18 12:10:46 [INFO]:   ✓ Step "Notify Account Manager" completed in 594ms
+2026-03-18 12:10:46 [INFO]:   Running step [task]: Process Payment
+2026-03-18 12:10:46 [INFO]:   ✓ Step "Process Payment" completed in 646ms
+2026-03-18 12:10:46 [INFO]:   Running step [notification]: Send Confirmation Email
+2026-03-18 12:10:47 [INFO]:   ✓ Step "Send Confirmation Email" completed in 554ms
+2026-03-18 12:10:47 [INFO]: [Engine] ✓ Execution 69ba48ec99c8601cf99fd3b5 COMPLETED in 0ms
+2026-03-18 12:11:23 [INFO]: [Queue] Enqueued execution: 69ba491399c8601cf99fd3ee
+2026-03-18 12:11:23 [INFO]: [Engine] Starting execution 69ba491399c8601cf99fd3ee — "customer.tier" (6 steps)
+2026-03-18 12:11:23 [INFO]:   Checking rule "Block Duplicate Orders": no match
+2026-03-18 12:11:23 [INFO]:   Running step [task]: Validate Order
+2026-03-18 12:11:24 [INFO]:   ✓ Step "Validate Order" completed in 612ms
+2026-03-18 12:11:24 [INFO]:   Running step [task]: Check Inventory
+2026-03-18 12:11:24 [INFO]:   ✓ Step "Check Inventory" completed in 414ms
+2026-03-18 12:11:24 [INFO]:   Checking rule "Skip Discount For Low Value": MATCHED
+2026-03-18 12:11:24 [INFO]:   Rules [AND] passed → action: skip_step
+2026-03-18 12:11:24 [INFO]:   Skipping step "Apply Discount " — rule: Skip Discount For Low Value
+2026-03-18 12:11:24 [INFO]:   Checking rule "Flag Premium Customer": MATCHED
+2026-03-18 12:11:24 [INFO]:   Rules [AND] passed → action: notify
+2026-03-18 12:11:24 [INFO]:   Rule "Flag Premium Customer" triggered notify action for step "Notify Account Manager"
+2026-03-18 12:11:24 [INFO]:   Running step [notification]: Notify Account Manager
+2026-03-18 12:11:25 [INFO]:   ✓ Step "Notify Account Manager" completed in 411ms
+2026-03-18 12:11:25 [INFO]:   Running step [task]: Process Payment
+2026-03-18 12:11:25 [INFO]:   ✓ Step "Process Payment" completed in 690ms
+2026-03-18 12:11:25 [INFO]:   Running step [notification]: Send Confirmation Email
+2026-03-18 12:11:26 [INFO]:   ✓ Step "Send Confirmation Email" completed in 634ms
+2026-03-18 12:11:26 [INFO]: [Engine] ✓ Execution 69ba491399c8601cf99fd3ee COMPLETED in 0ms
+2026-03-18 12:22:19 [INFO]: MongoDB connected: localhost
+2026-03-18 12:22:19 [INFO]: Server running on http://localhost:5000
+2026-03-18 12:22:19 [INFO]: Health check: http://localhost:5000/health
