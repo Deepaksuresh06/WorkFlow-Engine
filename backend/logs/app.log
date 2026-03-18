@@ -28,3 +28,102 @@
 2026-03-18 00:12:01 [INFO]: Server running on http://localhost:5000
 2026-03-18 00:12:01 [INFO]: Health check: http://localhost:5000/health
 2026-03-18 00:12:06 [INFO]: Shutting down...
+2026-03-18 00:12:13 [INFO]: MongoDB connected: localhost
+2026-03-18 00:12:13 [INFO]: Server running on http://localhost:5000
+2026-03-18 00:12:13 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 00:16:11 [INFO]: [Queue] Enqueued execution: 69b9a17376e90cf1e36d9947
+2026-03-18 00:16:11 [INFO]: [Engine] Starting execution 69b9a17376e90cf1e36d9947 — "rule tester" (3 steps)
+2026-03-18 00:16:12 [INFO]:   Running step [task]: Validate Order
+2026-03-18 00:16:12 [INFO]:   ✓ Step "Validate Order" completed in 683ms
+2026-03-18 00:16:12 [INFO]:   Rule matched: "Skip Cheap Orders" → action: allow
+2026-03-18 00:16:12 [INFO]:   Running step [task]: Apply Discount
+2026-03-18 00:16:13 [INFO]:   ✓ Step "Apply Discount" completed in 613ms
+2026-03-18 00:16:13 [INFO]:   Running step [task]: Confirm Order
+2026-03-18 00:16:14 [INFO]:   ✓ Step "Confirm Order" completed in 713ms
+2026-03-18 00:16:14 [INFO]: [Engine] ✓ Execution 69b9a17376e90cf1e36d9947 COMPLETED in 0ms
+2026-03-18 00:17:05 [INFO]: [Queue] Enqueued execution: 69b9a1a976e90cf1e36d9976
+2026-03-18 00:17:05 [INFO]: [Engine] Starting execution 69b9a1a976e90cf1e36d9976 — "rule tester" (3 steps)
+2026-03-18 00:17:05 [INFO]:   Running step [task]: Validate Order
+2026-03-18 00:17:05 [INFO]:   ✓ Step "Validate Order" completed in 555ms
+2026-03-18 00:17:06 [INFO]:   Running step [task]: Apply Discount
+2026-03-18 00:17:06 [INFO]:   ✓ Step "Apply Discount" completed in 556ms
+2026-03-18 00:17:06 [INFO]:   Running step [task]: Confirm Order
+2026-03-18 00:17:07 [INFO]:   ✓ Step "Confirm Order" completed in 681ms
+2026-03-18 00:17:07 [INFO]: [Engine] ✓ Execution 69b9a1a976e90cf1e36d9976 COMPLETED in 0ms
+2026-03-18 00:22:04 [INFO]: [Queue] Enqueued execution: 69b9a2d476e90cf1e36d99bd
+2026-03-18 00:22:04 [INFO]: [Engine] Starting execution 69b9a2d476e90cf1e36d99bd — "Employee Onboarding" (5 steps)
+2026-03-18 00:22:04 [INFO]:   Running step [notification]: Send Welcome Email
+2026-03-18 00:22:05 [INFO]:   ✓ Step "Send Welcome Email" completed in 656ms
+2026-03-18 00:22:05 [INFO]:   Running step [task]: Create System Account
+2026-03-18 00:22:05 [INFO]:   ✓ Step "Create System Account" completed in 621ms
+2026-03-18 00:22:05 [INFO]:   Running step [task]: Setup Office Desk
+2026-03-18 00:22:06 [INFO]:   ✓ Step "Setup Office Desk" completed in 712ms
+2026-03-18 00:22:06 [INFO]:   Running step [task]: Send Laptop to Home
+2026-03-18 00:22:06 [INFO]:   ✓ Step "Send Laptop to Home" completed in 337ms
+2026-03-18 00:22:06 [INFO]:   Running step [approval]: Schedule Orientation
+2026-03-18 00:22:07 [INFO]:   ✓ Step "Schedule Orientation" completed in 367ms
+2026-03-18 00:22:07 [INFO]: [Engine] ✓ Execution 69b9a2d476e90cf1e36d99bd COMPLETED in 0ms
+2026-03-18 00:22:30 [INFO]: [Queue] Enqueued execution: 69b9a2ee76e90cf1e36d99f2
+2026-03-18 00:22:30 [INFO]: [Engine] Starting execution 69b9a2ee76e90cf1e36d99f2 — "Employee Onboarding" (5 steps)
+2026-03-18 00:22:30 [INFO]:   Running step [notification]: Send Welcome Email
+2026-03-18 00:22:30 [INFO]:   ✓ Step "Send Welcome Email" completed in 536ms
+2026-03-18 00:22:30 [INFO]:   Running step [task]: Create System Account
+2026-03-18 00:22:31 [INFO]:   ✓ Step "Create System Account" completed in 399ms
+2026-03-18 00:22:31 [INFO]:   Rule matched: "Is Remote Employee" → action: skip_step
+2026-03-18 00:22:31 [INFO]:   Skipping step "Setup Office Desk" — rule: Is Remote Employee
+2026-03-18 00:22:31 [INFO]:   Running step [task]: Send Laptop to Home
+2026-03-18 00:22:31 [INFO]:   ✓ Step "Send Laptop to Home" completed in 626ms
+2026-03-18 00:22:31 [INFO]:   Running step [approval]: Schedule Orientation
+2026-03-18 00:22:32 [INFO]:   ✓ Step "Schedule Orientation" completed in 538ms
+2026-03-18 00:22:32 [INFO]: [Engine] ✓ Execution 69b9a2ee76e90cf1e36d99f2 COMPLETED in 0ms
+2026-03-18 01:34:57 [INFO]: MongoDB connected: localhost
+2026-03-18 01:34:57 [INFO]: Server running on http://localhost:5000
+2026-03-18 01:34:57 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 09:42:49 [INFO]: MongoDB connected: localhost
+2026-03-18 09:42:49 [INFO]: Server running on http://localhost:5000
+2026-03-18 09:42:49 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 09:46:01 [INFO]: MongoDB connected: localhost
+2026-03-18 09:46:01 [INFO]: Server running on http://localhost:5000
+2026-03-18 09:46:01 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 09:46:11 [INFO]: MongoDB connected: localhost
+2026-03-18 09:46:11 [INFO]: Server running on http://localhost:5000
+2026-03-18 09:46:11 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 09:46:17 [INFO]: MongoDB connected: localhost
+2026-03-18 09:46:17 [INFO]: Server running on http://localhost:5000
+2026-03-18 09:46:17 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 09:47:07 [INFO]: MongoDB connected: localhost
+2026-03-18 09:47:07 [INFO]: Server running on http://localhost:5000
+2026-03-18 09:47:07 [INFO]: Health check: http://localhost:5000/health
+2026-03-18 10:39:49 [INFO]: [Queue] Enqueued execution: 69ba339de5fb3500cee00b0b
+2026-03-18 10:39:49 [INFO]: [Engine] Starting execution 69ba339de5fb3500cee00b0b — "Multi-Rule Order Processing" (4 steps)
+2026-03-18 10:39:49 [INFO]:   Checking rule "Duplicate Order": no match
+2026-03-18 10:39:49 [INFO]:   Running step [task]: Validate order
+2026-03-18 10:39:50 [INFO]:   ✓ Step "Validate order" completed in 675ms
+2026-03-18 10:39:50 [INFO]:   Checking rule "High Value Order": MATCHED
+2026-03-18 10:39:50 [INFO]:   Checking rule "India Region": MATCHED
+2026-03-18 10:39:50 [INFO]:   Rules [AND] passed → action: skip_step
+2026-03-18 10:39:50 [INFO]:   Skipping step "Apply Regional Discount" — rule: High Value Order
+2026-03-18 10:39:50 [INFO]:   Checking rule "High Value Order": MATCHED
+2026-03-18 10:39:50 [INFO]:   Checking rule "India Region": MATCHED
+2026-03-18 10:39:50 [INFO]:   Rules [OR] passed → action: skip_step
+2026-03-18 10:39:50 [INFO]:   Skipping step "Process Payment" — rule: High Value Order
+2026-03-18 10:39:50 [INFO]:   Running step [notification]:  Send Confirmation
+2026-03-18 10:39:50 [INFO]:   ✓ Step " Send Confirmation" completed in 394ms
+2026-03-18 10:39:50 [INFO]: [Engine] ✓ Execution 69ba339de5fb3500cee00b0b COMPLETED in 0ms
+2026-03-18 10:42:57 [INFO]: [Queue] Enqueued execution: 69ba3459e5fb3500cee00b41
+2026-03-18 10:42:57 [INFO]: [Engine] Starting execution 69ba3459e5fb3500cee00b41 — "Multi-Rule Order Processing" (4 steps)
+2026-03-18 10:42:57 [INFO]:   Checking rule "Duplicate Order": no match
+2026-03-18 10:42:57 [INFO]:   Running step [task]: Validate order
+2026-03-18 10:42:57 [INFO]:   ✓ Step "Validate order" completed in 394ms
+2026-03-18 10:42:57 [INFO]:   Checking rule "High Value Order": no match
+2026-03-18 10:42:57 [INFO]:   Checking rule "India Region": MATCHED
+2026-03-18 10:42:57 [INFO]:   Running step [task]: Apply Regional Discount
+2026-03-18 10:42:57 [INFO]:   ✓ Step "Apply Regional Discount" completed in 369ms
+2026-03-18 10:42:57 [INFO]:   Checking rule "High Value Order": no match
+2026-03-18 10:42:57 [INFO]:   Checking rule "India Region": MATCHED
+2026-03-18 10:42:57 [INFO]:   Rules [OR] passed → action: skip_step
+2026-03-18 10:42:57 [INFO]:   Skipping step "Process Payment" — rule: India Region
+2026-03-18 10:42:57 [INFO]:   Running step [notification]:  Send Confirmation
+2026-03-18 10:42:58 [INFO]:   ✓ Step " Send Confirmation" completed in 333ms
+2026-03-18 10:42:58 [INFO]: [Engine] ✓ Execution 69ba3459e5fb3500cee00b41 COMPLETED in 0ms
+2026-03-18 10:59:29 [INFO]: Shutting down...

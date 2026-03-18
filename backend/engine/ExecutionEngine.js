@@ -17,16 +17,34 @@ const runStep = async (step, context) => {
 
 // ── Check if a rule fires for this step ──────────────────────────────────────
 const checkRule = async (step, context) => {
-  if (!step.ruleId) return null;
+  if (!step.rules || step.rules.length === 0) return null;
 
-  const rule = await Rule.findById(step.ruleId);
-  if (!rule || !rule.isActive) return null;
+  // Load all rules for this step
+  const ruleIds = step.rules.map(r => r.ruleId).filter(Boolean);
+  if (ruleIds.length === 0) return null;
 
-  const { passed } = evaluateRule(rule, context);
-  if (!passed) return null;
+  const loadedRules = await Rule.find({ _id: { $in: ruleIds }, isActive: true });
+  if (loadedRules.length === 0) return null;
 
-  logger.info(`  Rule matched: "${rule.name}" → action: ${rule.action}`);
-  return rule;
+  // Evaluate each rule against context
+  const results = loadedRules.map(rule => {
+    const { passed } = evaluateRule(rule, context);
+    logger.info(`  Checking rule "${rule.name}": ${passed ? 'MATCHED' : 'no match'}`);
+    return { rule, passed };
+  });
+
+  // Combine results with AND/OR logic
+  const logic   = step.rulesLogic || 'AND';
+  const overall = logic === 'OR'
+    ? results.some(r => r.passed)
+    : results.every(r => r.passed);
+
+  if (!overall) return null;
+
+  // Return the first matched rule's action (highest priority wins)
+  const matched = results.find(r => r.passed);
+  logger.info(`  Rules [${logic}] passed → action: ${matched.rule.action}`);
+  return matched.rule;
 };
 
 // ── Main execution orchestrator ──────────────────────────────────────────────

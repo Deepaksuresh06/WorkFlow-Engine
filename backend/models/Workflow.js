@@ -7,7 +7,11 @@ const StepSchema = new mongoose.Schema({
   order:       { type: Number, required: true },
   description: { type: String, default: '' },
   handler:     { type: String, default: 'log' },
-  ruleId:      { type: mongoose.Schema.Types.ObjectId, ref: 'Rule', default: null },
+  rules: [{
+    ruleId:   { type: mongoose.Schema.Types.ObjectId, ref: 'Rule' },
+    _id: false,
+  }],
+  rulesLogic: { type: String, enum: ['AND', 'OR'], default: 'AND' },
   retry: {
     maxAttempts: { type: Number, default: 3 },
     backoffMs:   { type: Number, default: 1000 },
