@@ -182,33 +182,6 @@ curl -X POST http://localhost:5000/api/workflows/<id>/execute \
   }'
 ```
 
----
-
-## Environment variables
-
-Create `backend/.env`:
-```
-PORT=5000
-NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/workflowos
-JWT_SECRET=your_secret_here
-```
-
----
-
-## Things I want to add next
-
-- WebSocket updates instead of polling
-- Cron-based scheduling so workflows can run on a timer
-- Parallel step execution for independent steps
-- Inbound webhook triggers so external services can fire workflows
-- Email delivery for notification steps
-- Export execution history as CSV
-- Docker Compose setup for one-command startup
-- Deploy guide for Railway + Vercel + MongoDB Atlas
-
----
-
 ## What I learned
 
 Building the execution engine was the most interesting part. The tricky bit was making cancellation work mid-execution — you can't just stop an async loop, so I added a status re-fetch between every step to check if it was cancelled externally before continuing.
