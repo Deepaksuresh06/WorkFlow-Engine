@@ -27,19 +27,30 @@ const RULE_COLORS = {
 
 /* ── Step editor row ─────────────────────────────────────────────────────── */
 function StepRow({ step, index, onChange, onRemove, rules }) {
-  const selectedRule = rules.find(r => r._id === step.ruleId);
-  const rc = selectedRule ? (RULE_COLORS[selectedRule.action] || {}) : {};
+  const addRule    = () => onChange(index, 'rules', [...(step.rules || []), { ruleId: '' }]);
+  const removeRule = (ri) => onChange(index, 'rules', step.rules.filter((_, i) => i !== ri));
+  const setRule    = (ri, val) => {
+    const updated = [...(step.rules || [])];
+    updated[ri] = { ruleId: val };
+    onChange(index, 'rules', updated);
+  };
+
+  const attachedRules = (step.rules || [])
+    .map(r => rules.find(rl => rl._id === r.ruleId))
+    .filter(Boolean);
 
   return (
     <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 14, marginBottom: 10, background: '#fafafa' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontWeight: 600, fontSize: 13, color: '#374151' }}>Step {index + 1}</span>
-          {selectedRule && (
-            <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 20, fontWeight: 600, background: rc.bg, color: rc.color }}>
-              Rule: {selectedRule.name} → {selectedRule.action}
+          {attachedRules.map(r => (
+            <span key={r._id} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 20, fontWeight: 600,
+              background: RULE_COLORS[r.action]?.bg || '#f3f4f6',
+              color:      RULE_COLORS[r.action]?.color || '#374151' }}>
+              {r.name} → {r.action}
             </span>
-          )}
+          ))}
         </div>
         <button onClick={() => onRemove(index)}
           style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: 13 }}>
@@ -62,30 +73,87 @@ function StepRow({ step, index, onChange, onRemove, rules }) {
           onChange={e => onChange(index, 'retry.maxAttempts', +e.target.value)} />
       </div>
 
-      {/* Rule picker */}
-      <Select
-        label="Attach Rule (optional)"
-        value={step.ruleId || ''}
-        onChange={e => onChange(index, 'ruleId', e.target.value)}>
-        <option value="">— No rule —</option>
-        {rules.map(r => (
-          <option key={r._id} value={r._id}>
-            {r.name} → {r.action} (priority {r.priority})
-          </option>
-        ))}
-      </Select>
-
-      {selectedRule && (
-        <div style={{ fontSize: 12, color: '#6b7280', marginTop: -8, padding: '6px 10px', background: rc.bg, borderRadius: 6 }}>
-          <strong>When rule matches:</strong> {selectedRule.conditions.map(c => `${c.field} ${c.operator} ${c.value}`).join(` ${selectedRule.conditionLogic} `)}
-          {' → '}
-          <strong>{selectedRule.action === 'skip_step' ? 'This step will be SKIPPED' :
-                   selectedRule.action === 'deny'      ? 'Execution will STOP here' :
-                   selectedRule.action === 'notify'    ? 'Notification triggered, step continues' :
-                   'Step runs normally (allow)'}
-          </strong>
+      {/* Multi-rule section */}
+      <div style={{ marginTop: 4 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: '#374151' }}>
+            Rules {step.rules?.length > 0 ? `(${step.rules.length})` : ''}
+          </span>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {step.rules?.length > 1 && (
+              <select value={step.rulesLogic || 'AND'}
+                onChange={e => onChange(index, 'rulesLogic', e.target.value)}
+                style={{ fontSize: 12, border: '1px solid #d1d5db', borderRadius: 6, padding: '3px 8px', background: '#fff' }}>
+                <option value="AND">AND — all must match</option>
+                <option value="OR">OR — any must match</option>
+              </select>
+            )}
+            <button onClick={addRule}
+              style={{ fontSize: 12, color: '#1d4ed8', background: 'none', border: '1px solid #1d4ed8', borderRadius: 6, padding: '3px 10px', cursor: 'pointer' }}>
+              + Add Rule
+            </button>
+          </div>
         </div>
-      )}
+
+        {(step.rules || []).length === 0 && (
+          <p style={{ fontSize: 12, color: '#9ca3af', marginBottom: 8 }}>No rules — step always runs</p>
+        )}
+
+        {(step.rules || []).map((r, ri) => {
+          const selectedRule = rules.find(rl => rl._id === r.ruleId);
+          return (
+            <div key={ri} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+              {ri > 0 && (
+                <span style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', width: 28, textAlign: 'center',
+                  background: '#f3f4f6', borderRadius: 4, padding: '2px 4px' }}>
+                  {step.rulesLogic || 'AND'}
+                </span>
+              )}
+              <select value={r.ruleId || ''}
+                onChange={e => setRule(ri, e.target.value)}
+                style={{ flex: 1, border: '1px solid #d1d5db', borderRadius: 8, padding: '7px 10px', fontSize: 13, background: '#fff' }}>
+                <option value="">— Select a rule —</option>
+                {rules.map(rl => (
+                  <option key={rl._id} value={rl._id}>
+                    {rl.name} → {rl.action} (priority {rl.priority})
+                  </option>
+                ))}
+              </select>
+              {selectedRule && (
+                <span style={{ fontSize: 11, padding: '3px 8px', borderRadius: 20, fontWeight: 600, whiteSpace: 'nowrap',
+                  background: RULE_COLORS[selectedRule.action]?.bg || '#f3f4f6',
+                  color:      RULE_COLORS[selectedRule.action]?.color || '#374151' }}>
+                  {selectedRule.action}
+                </span>
+              )}
+              <button onClick={() => removeRule(ri)}
+                style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>
+                ×
+              </button>
+            </div>
+          );
+        })}
+
+        {attachedRules.length > 0 && (
+          <div style={{ fontSize: 12, color: '#6b7280', background: '#f8f9fc', borderRadius: 6, padding: '6px 10px', marginTop: 4 }}>
+            {attachedRules.map((r, i) => (
+              <span key={r._id}>
+                {i > 0 && <strong> {step.rulesLogic || 'AND'} </strong>}
+                <code style={{ background: '#e5e7eb', padding: '1px 5px', borderRadius: 3 }}>
+                  {r.conditions.map(c => `${c.field} ${c.operator} ${c.value}`).join(` ${r.conditionLogic} `)}
+                </code>
+              </span>
+            ))}
+            {' → '}
+            <strong>{
+              attachedRules[0]?.action === 'skip_step' ? 'Step SKIPPED' :
+              attachedRules[0]?.action === 'deny'      ? 'Execution STOPS' :
+              attachedRules[0]?.action === 'notify'    ? 'Notification sent, step continues' :
+              'Step runs normally'
+            }</strong>
+          </div>
+        )}
+      </div>
 
       <Input label="Description" value={step.description} placeholder="What does this step do?"
         onChange={e => onChange(index, 'description', e.target.value)} />
@@ -129,7 +197,8 @@ function WorkflowModal({ open, onClose, initial, onSaved }) {
         steps: form.steps.map((s, i) => ({
           ...s,
           order:  i,
-          ruleId: s.ruleId || null,
+          rules:      (s.rules || []).filter(r => r.ruleId),
+          rulesLogic: s.rulesLogic || 'AND',
         })),
       };
       if (initial?._id) await workflowAPI.update(initial._id, payload);
